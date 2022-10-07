@@ -15,7 +15,7 @@ const usersRoutes = require("./routes/users");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
-const port = 3000;
+const port = process.env.PORT || 5000;
 
 app.get("/main", (req, res, next) => {
   console.log(`Working on port ${port}!`);
