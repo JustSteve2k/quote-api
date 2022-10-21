@@ -15,3 +15,14 @@ exports.getHtml = (req, res, next) => {
   res.type(".html");
   res.send("<h1>HTML TEST</html>");
 };
+
+exports.getRandomNum = (req, res, next) => {
+  let max = req.params.id;
+  let num = 0;
+
+  // console.log(max);
+  num = Math.floor(Math.random() * max);
+
+  res.type("json");
+  res.send({ original: max, yourNumber: num });
+};
