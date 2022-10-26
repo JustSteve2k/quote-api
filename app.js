@@ -2,17 +2,23 @@ const path = require("path");
 
 const express = require("express");
 const bodyParser = require("body-parser");
+const connectDB = require("./config/db.js");
 
 const app = express();
+
+connectDB();
 
 app.set("view engine", "ejs");
 app.set("views", "views");
 
 const testRoutes = require("./routes/test");
 const usersRoutes = require("./routes/users");
+const quoteRoutes = require("./routes/quotes");
+// const { connect } = require("http2");
 
 // Static folder
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "public")));
 
 const port = process.env.PORT || 5000;
@@ -27,9 +33,16 @@ app.use("/test", testRoutes);
 
 app.use("/users", usersRoutes);
 
+app.use("/quotes", quoteRoutes);
+
+app.get("/", (req, res, next) => {
+  console.log("this is the main page.");
+  res.send("<h1>This is the main page</h1>");
+});
+
 app.use("/", (req, res, next) => {
-  console.log("I think you're lost");
-  res.status(404).send("<h1>Yoooure loooost, go back</h1>");
+  console.log("Someone is lost");
+  res.status(404).send("<h1>Error 404, Youre lost</h1>");
 });
 
 app.listen(port);
