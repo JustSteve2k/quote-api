@@ -14,6 +14,7 @@ app.set("views", "views");
 const testRoutes = require("./routes/test");
 const usersRoutes = require("./routes/users");
 const quoteRoutes = require("./routes/quotes");
+const mathRoutes = require("./routes/mathRoutes");
 // const { connect } = require("http2");
 
 // Static folder
@@ -28,6 +29,17 @@ app.get("/main", (req, res, next) => {
   //   res.send("<h1>Main page!</h1>");
   res.render("main");
 });
+
+app.get("/alternate", (req, res, next) => {
+  console.log("alternate works in the console!");
+  res.send("works via res.send!");
+});
+
+app.get("/joke", (req, res, next) => {
+  res.send("here is a joke, why is 6 afraid of 7, cause 7 8 9. Yuk yuk");
+});
+
+app.use("/math", mathRoutes);
 
 app.use("/test", testRoutes);
 
