@@ -1,11 +1,10 @@
 const mongoose = require("mongoose");
 const colors = require("colors");
+const password = require("./pass");
 
 const connectDB = async () => {
   try {
-    const URI = "mongodb+srv://admin:mongopassword@cluster0.aud2amv.mongodb.net/quotes";
-    // "mongodb+srv://admin:mongopassword@cluster0.aud2amv.mongodb.net/?retryWrites=true&w=majority";
-    // const conn = await mongoose.connect(process.env.MONGO_URI);
+    const URI = "mongodb+srv://admin:" + password + "@cluster0.aud2amv.mongodb.net/quotes?retryWrites=true&w=majority";
     const conn = await mongoose.connect(URI);
 
     console.log(`MongoDB Connected ${conn.connection.host}`.underline.blue);
