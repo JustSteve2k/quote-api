@@ -13,7 +13,7 @@ app.set("views", "views");
 
 const testRoutes = require("./routes/test");
 const usersRoutes = require("./routes/users");
-const quoteRoutes = require("./routes/quotes");
+const quoteRoutes = require("./routes/quotesRoutes");
 const mathRoutes = require("./routes/mathRoutes");
 // const { connect } = require("http2");
 
